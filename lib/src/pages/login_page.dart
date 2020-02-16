@@ -15,10 +15,7 @@ class LoginPage extends StatelessWidget {
 Widget _makeBackGround(BuildContext context) {
   final size = MediaQuery.of(context).size;
 
-  final colorGradient = <Color>[
-    Color.fromRGBO(63, 63, 156, 1.0),
-    Color.fromRGBO(90, 70, 178, 1.0),
-  ];
+  final colorGradient = <Color>[Color(0xfffbb448), Color(0xfff7892b)];
 
   final purpleBckGround = Container(
     height: size.height * .4,
@@ -31,7 +28,7 @@ Widget _makeBackGround(BuildContext context) {
     height: 100.0,
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100.0),
-        color: Color.fromRGBO(255, 255, 255, 0.05)),
+        color: Color.fromRGBO(255, 255, 255, .2)),
   );
 
   return Stack(
@@ -146,7 +143,7 @@ Widget _makeEmail() {
       decoration: InputDecoration(
           icon: Icon(
             Icons.alternate_email,
-            color: Colors.deepPurple,
+            color: Color(0xfff7892b),
           ),
           hintText: 'ejemplo@correo.com',
           labelText: 'Correo electrónico'),
@@ -162,7 +159,7 @@ Widget _makePassword() {
       decoration: InputDecoration(
           icon: Icon(
             Icons.lock_outline,
-            color: Colors.deepPurple,
+            color: Color(0xfff7892b),
           ),
           labelText: 'Contraseña'),
     ),
@@ -177,7 +174,7 @@ Widget _makeButtonSubmit() {
     ),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
     elevation: 0.5,
-    color: Colors.deepPurple,
+    color: Color(0xfff7892b),
     textColor: Colors.white,
     onPressed: () {},
   );
