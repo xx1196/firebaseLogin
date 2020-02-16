@@ -152,7 +152,8 @@ Widget _makeEmail(LoginBloc bloc) {
               ),
               hintText: 'ejemplo@correo.com',
               labelText: 'Correo electrónico',
-              counterText: snapshot.data),
+              counterText: snapshot.data,
+              errorText: snapshot.error),
           onChanged: bloc.changeEmail,
         ),
       );
@@ -174,7 +175,8 @@ Widget _makePassword(LoginBloc bloc) {
                 color: Color(0xfff7892b),
               ),
               labelText: 'Contraseña',
-              counterText: snapshot.data),
+              counterText: snapshot.data,
+              errorText: snapshot.error),
           onChanged: bloc.changePassword,
         ),
       );
