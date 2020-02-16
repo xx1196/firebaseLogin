@@ -4,7 +4,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget body = Stack(
-      children: <Widget>[_makeBackGround(context)],
+      children: <Widget>[_makeBackGround(context), _loginForm(context)],
     );
     return Scaffold(
       body: body,
@@ -68,11 +68,117 @@ Widget _makeBackGround(BuildContext context) {
           children: <Widget>[
             Icon(Icons.person_pin_circle, color: Colors.white, size: 100.0),
             SizedBox(height: 10.0, width: double.infinity),
-            Text('XX1199',
+            Text('xx1196',
                 style: TextStyle(color: Colors.white, fontSize: 25.0))
           ],
         ),
       )
     ],
+  );
+}
+
+Widget _loginForm(BuildContext context) {
+  final size = MediaQuery.of(context).size;
+
+  final boxShadow = <BoxShadow>[
+    BoxShadow(
+        color: Colors.black26,
+        blurRadius: 3.0,
+        offset: Offset(0.0, 5.0),
+        spreadRadius: 3.0)
+  ];
+
+  final safeArea = SafeArea(
+    child: Container(
+      height: 200.0,
+    ),
+  );
+
+  final _loginBox = Container(
+    width: size.width * .85,
+    margin: EdgeInsets.symmetric(vertical: 30.0),
+    padding: EdgeInsets.symmetric(vertical: 50.0),
+    decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(5.0),
+        boxShadow: boxShadow),
+    child: Column(
+      children: <Widget>[
+        Text(
+          'Ingreso',
+          style: TextStyle(fontSize: 20.0),
+        ),
+        SizedBox(
+          height: 60.0,
+        ),
+        _makeEmail(),
+        SizedBox(
+          height: 60.0,
+        ),
+        _makePassword(),
+        SizedBox(
+          height: 60.0,
+        ),
+        _makeButtonSubmit()
+      ],
+    ),
+  );
+
+  return SingleChildScrollView(
+    child: Column(
+      children: <Widget>[
+        safeArea,
+        _loginBox,
+        Text('¿Olvido su contraseña?'),
+        SizedBox(
+          height: 25.0,
+        )
+      ],
+    ),
+  );
+}
+
+Widget _makeEmail() {
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 20.0),
+    child: TextField(
+      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(
+          icon: Icon(
+            Icons.alternate_email,
+            color: Colors.deepPurple,
+          ),
+          hintText: 'ejemplo@correo.com',
+          labelText: 'Correo electrónico'),
+    ),
+  );
+}
+
+Widget _makePassword() {
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 20.0),
+    child: TextField(
+      obscureText: true,
+      decoration: InputDecoration(
+          icon: Icon(
+            Icons.lock_outline,
+            color: Colors.deepPurple,
+          ),
+          labelText: 'Contraseña'),
+    ),
+  );
+}
+
+Widget _makeButtonSubmit() {
+  return RaisedButton(
+    child: Container(
+      padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
+      child: Text('Ingresar'),
+    ),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+    elevation: 0.5,
+    color: Colors.deepPurple,
+    textColor: Colors.white,
+    onPressed: () {},
   );
 }
