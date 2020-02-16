@@ -1,5 +1,6 @@
 import 'package:firebase_login/src/bloc/login_bloc.dart';
-import 'package:flutter/cupertino.dart';
+export 'package:firebase_login/src/bloc/login_bloc.dart';
+import 'package:flutter/material.dart';
 
 class Provider extends InheritedWidget {
   final loginBloc = LoginBloc();

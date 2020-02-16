@@ -10,7 +10,7 @@ class LoginBloc {
 
   Stream<String> get emailStream => _emailController.stream;
 
-  Stream<String> get password => _passwordController.stream;
+  Stream<String> get passwordStream => _passwordController.stream;
 
   dispose() {
     _emailController?.close();

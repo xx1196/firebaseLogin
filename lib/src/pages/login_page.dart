@@ -1,3 +1,4 @@
+import 'package:firebase_login/src/bloc/provider.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -75,6 +76,7 @@ Widget _makeBackGround(BuildContext context) {
 }
 
 Widget _loginForm(BuildContext context) {
+  final bloc = Provider.of(context);
   final size = MediaQuery.of(context).size;
 
   final boxShadow = <BoxShadow>[
@@ -108,11 +110,11 @@ Widget _loginForm(BuildContext context) {
         SizedBox(
           height: 60.0,
         ),
-        _makeEmail(),
+        _makeEmail(bloc),
         SizedBox(
           height: 60.0,
         ),
-        _makePassword(),
+        _makePassword(bloc),
         SizedBox(
           height: 60.0,
         ),
@@ -135,34 +137,48 @@ Widget _loginForm(BuildContext context) {
   );
 }
 
-Widget _makeEmail() {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 20.0),
-    child: TextField(
-      keyboardType: TextInputType.emailAddress,
-      decoration: InputDecoration(
-          icon: Icon(
-            Icons.alternate_email,
-            color: Color(0xfff7892b),
-          ),
-          hintText: 'ejemplo@correo.com',
-          labelText: 'Correo electrónico'),
-    ),
+Widget _makeEmail(LoginBloc bloc) {
+  return StreamBuilder(
+    stream: bloc.emailStream,
+    builder: (BuildContext context, AsyncSnapshot snapshot) {
+      return Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        child: TextField(
+          keyboardType: TextInputType.emailAddress,
+          decoration: InputDecoration(
+              icon: Icon(
+                Icons.alternate_email,
+                color: Color(0xfff7892b),
+              ),
+              hintText: 'ejemplo@correo.com',
+              labelText: 'Correo electrónico',
+              counterText: snapshot.data),
+          onChanged: bloc.changeEmail,
+        ),
+      );
+    },
   );
 }
 
-Widget _makePassword() {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 20.0),
-    child: TextField(
-      obscureText: true,
-      decoration: InputDecoration(
-          icon: Icon(
-            Icons.lock_outline,
-            color: Color(0xfff7892b),
-          ),
-          labelText: 'Contraseña'),
-    ),
+Widget _makePassword(LoginBloc bloc) {
+  return StreamBuilder(
+    stream: bloc.passwordStream,
+    builder: (BuildContext context, AsyncSnapshot snapshot) {
+      return Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        child: TextField(
+          obscureText: true,
+          decoration: InputDecoration(
+              icon: Icon(
+                Icons.lock_outline,
+                color: Color(0xfff7892b),
+              ),
+              labelText: 'Contraseña',
+              counterText: snapshot.data),
+          onChanged: bloc.changePassword,
+        ),
+      );
+    },
   );
 }
 
