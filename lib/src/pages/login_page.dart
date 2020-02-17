@@ -199,7 +199,15 @@ Widget _makeButtonSubmit(LoginBloc bloc) {
           color: Color(0xfff7892b),
           textColor: Colors.white,
           disabledColor: Color(0xfffbb448),
-          onPressed: (snapshot.hasData) ? () {} : null,
+          onPressed: (snapshot.hasData) ? () => _login(context, bloc) : null,
         );
       });
+}
+
+_login(BuildContext context, LoginBloc bloc) {
+  print('=========================================');
+  print('Email: ${bloc.email}');
+  print('Password: ${bloc.password}');
+  print('=========================================');
+Navigator.pushReplacementNamed(context, 'home');
 }

@@ -20,6 +20,9 @@ class LoginBloc with Validators {
   Stream<String> get passwordStream =>
       _passwordController.stream.transform(validatePassword);
 
+  String get email => _emailController.value;
+  String get password => _passwordController.value;
+
   dispose() {
     _emailController?.close();
     _passwordController?.close();
