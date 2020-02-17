@@ -118,7 +118,7 @@ Widget _loginForm(BuildContext context) {
         SizedBox(
           height: 60.0,
         ),
-        _makeButtonSubmit()
+        _makeButtonSubmit(bloc)
       ],
     ),
   );
@@ -184,16 +184,22 @@ Widget _makePassword(LoginBloc bloc) {
   );
 }
 
-Widget _makeButtonSubmit() {
-  return RaisedButton(
-    child: Container(
-      padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
-      child: Text('Ingresar'),
-    ),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-    elevation: 0.5,
-    color: Color(0xfff7892b),
-    textColor: Colors.white,
-    onPressed: () {},
-  );
+Widget _makeButtonSubmit(LoginBloc bloc) {
+  return StreamBuilder(
+      stream: bloc.formValidStream,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return RaisedButton(
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
+            child: Text('Ingresar'),
+          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+          elevation: 0.8,
+          color: Color(0xfff7892b),
+          textColor: Colors.white,
+          disabledColor: Color(0xfffbb448),
+          onPressed: (snapshot.hasData) ? () {} : null,
+        );
+      });
 }
